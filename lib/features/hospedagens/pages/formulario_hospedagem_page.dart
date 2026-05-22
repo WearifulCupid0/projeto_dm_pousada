@@ -152,7 +152,6 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
                       Icon(_iconeTipo(tipo), size: 18, color: cs.primary),
                       const SizedBox(width: 10),
                       Text(tipo.label),
-                      const Spacer(),
                       Text(
                         'R\$ ${Hospedagem.valorDiaria(tipo).toStringAsFixed(0)}/diária',
                         style: tt.bodySmall

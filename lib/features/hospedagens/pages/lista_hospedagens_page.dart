@@ -36,7 +36,13 @@ class ListaHospedagensPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _abrirFormulario(context, null),
+        onPressed: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const FormularioHospedagemPage(),
+            ),
+          );
+        }),
         icon: const Icon(Icons.add_rounded),
         label: const Text('Nova Hospedagem'),
       ),
@@ -81,13 +87,20 @@ class _BarraBuscaState extends State<_BarraBusca> {
                   icon: const Icon(Icons.clear_rounded),
                   onPressed: () {
                     _ctrl.clear();
-                    context.read<HospedagemProvider>().setBusca('');
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (mounted) context.read<HospedagemProvider>().setBusca('');
+                    });
                   },
+                  
                 )
               : null,
           fillColor: cs.surface,
         ),
-        onChanged: context.read<HospedagemProvider>().setBusca,
+        onChanged: (value) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) context.read<HospedagemProvider>().setBusca(value);
+          });
+        },
       ),
     );
   }
@@ -168,17 +181,21 @@ class _BotaoFiltros extends StatelessWidget {
       child: IconButton(
         icon: const Icon(Icons.tune_rounded),
         tooltip: 'Filtros',
-        onPressed: () => showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          builder: (_) => ChangeNotifierProvider.value(
-            value: context.read<HospedagemProvider>(),
-            child: const FiltrosSheet(),
-          ),
-        ),
+        onPressed: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (context.mounted) {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+              ),
+              builder: (_) => ChangeNotifierProvider.value(
+                value: context.read<HospedagemProvider>(),
+                child: const FiltrosSheet(),
+              ),
+            );
+          }
+        }),
       ),
     );
   }
@@ -230,53 +247,59 @@ class _ListaHospedagens extends StatelessWidget {
         final h = hospedagens[index];
         return HospedagemCard(
           hospedagem: h,
-          onEditar: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => FormularioHospedagemPage(hospedagem: h),
-            ),
-          ),
+          onEditar: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (context.mounted) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => FormularioHospedagemPage(hospedagem: h),
+                ),
+              );
+            }
+          }),
           onRemover: () => _confirmarRemocao(context, h),
         );
       },
     );
   }
-
   void _confirmarRemocao(BuildContext context, Hospedagem h) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        icon: const Icon(Icons.delete_outline_rounded, size: 32),
-        title: const Text('Remover Hospedagem?'),
-        content: Text(
-          'A hospedagem de "${h.nomeHospede}" será removida permanentemente.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancelar'),
-          ),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.error,
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!context.mounted) return;
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            icon: const Icon(Icons.delete_outline_rounded, size: 32),
+            title: const Text('Remover Hospedagem?'),
+            content: Text(
+              'A hospedagem de "${h.nomeHospede}" será removida permanentemente.',
             ),
-            onPressed: () {
-              context.read<HospedagemProvider>().remover(h.id);
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Hospedagem de ${h.nomeHospede} removida.'),
-                  action: SnackBarAction(
-                    label: 'OK',
-                    onPressed: () {},
+            actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancelar'),
+            ),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.error,
+              ),
+              onPressed: () {
+                context.read<HospedagemProvider>().remover(h.id);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Hospedagem de ${h.nomeHospede} removida.'),
+                    action: SnackBarAction(
+                      label: 'OK',
+                      onPressed: () {},
+                    ),
                   ),
-                ),
-              );
-            },
-            child: const Text('Remover'),
-          ),
-        ],
-      ),
-    );
+                );
+              },
+              child: const Text('Remover'),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 
