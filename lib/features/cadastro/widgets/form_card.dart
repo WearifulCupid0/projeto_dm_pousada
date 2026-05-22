@@ -10,7 +10,6 @@ class FormCard extends StatelessWidget {
   final ValueChanged<String?> onTipoQuartoChanged;
   final VoidCallback onSubmit;
 
-  // Mensagens de erro vindas da validação na page
   final String? erroHospede;
   final String? erroIdade;
   final String? erroTipoQuarto;
@@ -70,7 +69,6 @@ class FormCard extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // ── Campo: Nome do Hóspede ────────────────────────────────────
             TextField(
               controller: hospedeController,
               focusNode: hospedeFocus,
@@ -87,10 +85,6 @@ class FormCard extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // ── Campo: Idade ───────────────────────────────────────────────
-            // keyboardType: number → teclado numérico no celular
-            // FilteringTextInputFormatter.digitsOnly → bloqueia letras no desktop
-            // _IdadeInputFormatter → limita 1-120
             TextField(
               controller: idadeController,
               focusNode: idadeFocus,
@@ -113,8 +107,6 @@ class FormCard extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // ── Dropdown: Tipo de Quarto ───────────────────────────────────
-            // Valores fixos: Standard, Confort, Luxo
             DropdownButtonFormField<String>(
               value: tipoQuartoSelecionado,
               decoration: InputDecoration(
@@ -193,8 +185,6 @@ class FormCard extends StatelessWidget {
     }
   }
 }
-
-/// Bloqueia entradas fora do intervalo 1–120
 class _IdadeInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

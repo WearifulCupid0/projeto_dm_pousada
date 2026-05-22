@@ -1,7 +1,6 @@
-name: pousada_app
-description: "Aplicativo de Cadastro de Hospedagem em Pousada."
+name: pousada_sistema
+description: "Sistema de Hospedagens em Pousada — Flutter + Material 3"
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
@@ -11,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:

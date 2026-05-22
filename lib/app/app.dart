@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
-import '../features/cadastro/pages/cadastro_hospedagem_page.dart';
+import '../features/hospedagens/pages/lista_hospedagens_page.dart';
 
 class PousadaApp extends StatelessWidget {
   const PousadaApp({super.key});
@@ -8,10 +8,10 @@ class PousadaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cadastro de Hospedagem',
+      title: 'Sistema de Hospedagens',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      home: const CadastroHospedagemPage(),
+      theme: AppTheme.light,
+      home: const ListaHospedagensPage(),
     );
   }
 }

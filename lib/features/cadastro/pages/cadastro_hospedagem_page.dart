@@ -21,7 +21,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
   bool _atendimentoPrioritario = false;
   bool _aceitouTermos = false;
 
-  // Erros de validação
   String? _erroHospede;
   String? _erroIdade;
   String? _erroTipoQuarto;
@@ -42,7 +41,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
     bool valido = true;
 
     setState(() {
-      // Nome
       if (hospede.isEmpty) {
         _erroHospede = 'Informe o nome do hóspede.';
         valido = false;
@@ -53,7 +51,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
         _erroHospede = null;
       }
 
-      // Idade
       if (idadeText.isEmpty) {
         _erroIdade = 'Informe a idade.';
         valido = false;
@@ -70,7 +67,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
         }
       }
 
-      // Tipo de quarto
       if (_tipoQuartoSelecionado == null) {
         _erroTipoQuarto = 'Selecione um tipo de quarto.';
         valido = false;
@@ -78,7 +74,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
         _erroTipoQuarto = null;
       }
 
-      // Termos de uso
       if (!_aceitouTermos) {
         _erroTermos = 'Você deve aceitar os termos para continuar.';
         valido = false;
@@ -171,7 +166,6 @@ class _CadastroHospedagemPageState extends State<CadastroHospedagemPage> {
     );
   }
 
-  /// Abre um bottom sheet com o texto dos termos de uso
   void _abrirTermos() {
     showModalBottomSheet(
       context: context,
