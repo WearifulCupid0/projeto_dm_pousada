@@ -48,14 +48,6 @@ class ListaHospedagensPage extends StatelessWidget {
       ),
     );
   }
-
-  static void _abrirFormulario(BuildContext context, Hospedagem? hospedagem) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => FormularioHospedagemPage(hospedagem: hospedagem),
-      ),
-    );
-  }
 }
 
 class _BarraBusca extends StatefulWidget {
