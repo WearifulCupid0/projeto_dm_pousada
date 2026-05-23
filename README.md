@@ -6,7 +6,7 @@ Aplicação Flutter completa para registrar, listar, editar e remover hospedagen
 
 ## ⚠️ ATENÇÃO UTILIZAÇÃO DE IA
 
-Este projeto foi utilizado IA para os seguintes itens:
+Este projeto foi utilizado Claude.IA para os seguintes itens:
  - Revisão do código
  - Criação do README.md
  - Verificação se o código valida todos os requisitos solicitados
