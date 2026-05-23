@@ -23,7 +23,7 @@ class HospedagemCard extends StatelessWidget {
       color: cs.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: cs.outlineVariant.withOpacity(0.6)),
+        side: BorderSide(color: cs.outlineVariant.withValues(alpha: 0.6)),
       ),
       child: InkWell(
         onTap: onEditar,
@@ -109,7 +109,7 @@ class HospedagemCard extends StatelessWidget {
               ),
 
               const SizedBox(height: 14),
-              Divider(height: 1, color: cs.outlineVariant.withOpacity(0.5)),
+              Divider(height: 1, color: cs.outlineVariant.withValues(alpha: 0.5)),
               const SizedBox(height: 12),
 
               Row(

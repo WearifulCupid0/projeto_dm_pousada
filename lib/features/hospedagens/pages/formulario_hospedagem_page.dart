@@ -108,7 +108,7 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            _SectionHeader(icon: Icons.person_rounded, title: 'Dados do Hóspede'),
+            const _SectionHeader(icon: Icons.person_rounded, title: 'Dados do Hóspede'),
             const SizedBox(height: 14),
 
             TextFormField(
@@ -138,7 +138,7 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
             const SizedBox(height: 14),
 
             DropdownButtonFormField<TipoQuarto>(
-              value: _tipoQuarto,
+              initialValue: _tipoQuarto,
               decoration: const InputDecoration(
                 labelText: 'Tipo de Quarto *',
                 prefixIcon: Icon(Icons.bed_outlined),
@@ -206,7 +206,7 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
             const SizedBox(height: 14),
 
             DropdownButtonFormField<FormaPagamento>(
-              value: _formaPagamento,
+              initialValue: _formaPagamento,
               decoration: const InputDecoration(
                 labelText: 'Forma de Pagamento *',
                 prefixIcon: Icon(Icons.credit_card_outlined),
@@ -236,13 +236,13 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
 
             Card(
               color: _vagaGaragem
-                  ? cs.primaryContainer.withOpacity(0.5)
+                  ? cs.primaryContainer.withValues(alpha: 0.5)
                   : cs.surface,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
                 side: BorderSide(
                   color: _vagaGaragem
-                      ? cs.primary.withOpacity(0.4)
+                      ? cs.primary.withValues(alpha: 0.4)
                       : cs.outlineVariant,
                 ),
               ),
@@ -279,7 +279,7 @@ class _FormularioHospedagemPageState extends State<FormularioHospedagemPage> {
                     size: 22,
                   ),
                 ),
-                activeColor: cs.primary,
+                activeThumbColor: cs.primary,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
               ),

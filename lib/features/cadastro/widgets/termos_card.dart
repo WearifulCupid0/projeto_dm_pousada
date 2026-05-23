@@ -55,12 +55,12 @@ class TermosCard extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: atendimentoPrioritario
-                    ? colorScheme.primaryContainer.withOpacity(0.5)
+                    ? colorScheme.primaryContainer.withValues(alpha: 0.5)
                     : colorScheme.surfaceContainerLow,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: atendimentoPrioritario
-                      ? colorScheme.primary.withOpacity(0.4)
+                      ? colorScheme.primary.withValues(alpha: 0.4)
                       : colorScheme.outlineVariant,
                 ),
               ),
@@ -108,7 +108,7 @@ class TermosCard extends StatelessWidget {
                     size: 22,
                   ),
                 ),
-                activeColor: colorScheme.primary,
+                activeThumbColor: colorScheme.primary,
               ),
             ),
 

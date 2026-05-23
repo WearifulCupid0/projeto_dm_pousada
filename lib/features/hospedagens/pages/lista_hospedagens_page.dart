@@ -309,7 +309,7 @@ class _EstadoVazio extends StatelessWidget {
           Icon(
             temFiltro ? Icons.search_off_rounded : Icons.hotel_outlined,
             size: 72,
-            color: cs.onSurfaceVariant.withOpacity(0.35),
+            color: cs.onSurfaceVariant.withValues(alpha: 0.35),
           ),
           const SizedBox(height: 16),
           Text(
@@ -326,7 +326,7 @@ class _EstadoVazio extends StatelessWidget {
                 ? 'Tente ajustar os filtros ou a busca.'
                 : 'Toque em "Nova Hospedagem" para começar.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: cs.onSurfaceVariant.withOpacity(0.7),
+                  color: cs.onSurfaceVariant.withValues(alpha: 0.7),
                 ),
             textAlign: TextAlign.center,
           ),

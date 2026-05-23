@@ -108,7 +108,7 @@ class FormCard extends StatelessWidget {
             const SizedBox(height: 16),
 
             DropdownButtonFormField<String>(
-              value: tipoQuartoSelecionado,
+              initialValue: tipoQuartoSelecionado,
               decoration: InputDecoration(
                 labelText: 'Tipo de Quarto *',
                 prefixIcon: const Icon(Icons.bed_outlined),

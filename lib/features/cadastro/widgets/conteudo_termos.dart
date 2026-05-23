@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConteudoTermos extends StatelessWidget {
-  const ConteudoTermos();
+  const ConteudoTermos({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class ConteudoTermos extends StatelessWidget {
         Text(
           'Última atualização: maio de 2025',
           style: textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurfaceVariant.withOpacity(0.6)),
+              color: colorScheme.onSurfaceVariant.withValues(alpha: 0.6)),
         ),
       ],
     );
